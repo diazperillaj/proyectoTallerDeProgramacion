@@ -19,6 +19,12 @@ public class Usuario {
         this.contra = contra;
     }
 
+    public Usuario(String usuario, String contra, String rol) {
+        this.usuario = usuario;
+        this.contra = contra;
+        this.rol = rol;
+    }
+
     public int getId() {
         return id;
     }

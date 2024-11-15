@@ -7,9 +7,11 @@
 
 <%@page import="java.util.List"%>
 <%@page import="model.Empresa"%>
+<%@page import="controller.EmpresaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    List<Empresa> empresas = (List<Empresa>) request.getAttribute("empresa");
+    EmpresaDAO usDAO = new EmpresaDAO();
+    List<Empresa> empresas = usDAO.rEmpresa();
 %>
 
 <!DOCTYPE html>
@@ -22,7 +24,7 @@
     </head>
     <body>
         <div class="registroEmpresas">
-            <caption>Lista de empresas</caption>
+            <h1>Lista de empresas</h1>
             <table class="table table-striped">
                 <thead>
                     <tr>

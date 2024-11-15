@@ -18,12 +18,12 @@ import java.util.List;
 public class UsuarioDAO {
     
     public boolean cUsuario(Usuario pl) {
-        String sql = "INSERT INTO usuarios (usuario, contra, rol) VALUES (?,?,?)";
+        String sql = "INSERT INTO Usuarios (usuario, contra, rol) VALUES (?,?,?)";
 
-        System.out.println("In controller.UsuarioDAO cUsuario");
         
         try (Connection conexion = ConnectionDB.getConnection(); PreparedStatement stmt = conexion.prepareStatement(sql)) {
 
+            
             stmt.setString(1, pl.getUsuario());
             stmt.setString(2, pl.getContra());
             stmt.setString(3, pl.getRol());
@@ -40,7 +40,7 @@ public class UsuarioDAO {
     public List<Usuario> rUsuario() {
 
         List<Usuario> pl = new ArrayList<>();
-        String sql = "SELECT * FROM usuarios";
+        String sql = "SELECT * FROM Usuarios";
 
         try (Connection conexion = ConnectionDB.getConnection(); PreparedStatement stmt = conexion.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
@@ -62,7 +62,7 @@ public class UsuarioDAO {
     }
     
     public Usuario validateUsuario (Usuario u) {
-        String sql = "SELECT * FROM usuarios WHERE usuario = ? AND contra = ?";
+        String sql = "SELECT * FROM Usuarios WHERE usuario = ? AND contra = ?";
         Usuario us = null;
         
         System.out.println(u.getUsuario());
@@ -94,7 +94,7 @@ public class UsuarioDAO {
 
     public boolean uUsuario(Usuario pl) {
 
-        String sql = "UPDATE usuarios SET nombre = ?, contra = ?, rol = ? WHERE id = ?";
+        String sql = "UPDATE Usuarios SET nombre = ?, contra = ?, rol = ? WHERE id = ?";
 
         try (Connection conexion = ConnectionDB.getConnection(); PreparedStatement stmt = conexion.prepareStatement(sql)) {
 
