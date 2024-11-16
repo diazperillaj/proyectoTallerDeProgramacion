@@ -42,6 +42,7 @@
                         <th scope="col">Página Web</th>
                         <th scope="col">Dirección</th>
                         <th scope="col">Código Postal</th>
+                        <th scope="col">Acción</th>
                     </tr>
                 </thead>
 
@@ -56,6 +57,12 @@
                         <td><%= e.getWebSite()%></td>
                         <td><%= e.getDireccion()%></td>
                         <td><%= e.getPostal()%></td>
+                        <form action="EliminarEmpresa" method="POST">
+                            <td>
+                                <input type="hidden" name="empresaId" value="<%=e.getId()%>">
+                                <button type="submit" class="btn btn-primary">Eliminar</button>
+                            </td>
+                        </form>>
                     </tr>
                     <% }%>
 

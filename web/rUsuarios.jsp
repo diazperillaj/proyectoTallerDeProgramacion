@@ -50,6 +50,12 @@
                         <% } else {%>
                         <td><%= e.getRol()%></td>
                         <% } %>
+                        <form action="EliminarUsuario" method="POST">
+                            <td>
+                                <input type="hidden" name="usuarioId" value="<%=e.getId()%>">
+                                <button type="submit" class="btn btn-primary">Eliminar</button>
+                            </td>
+                        </form>>
                     </tr>
                     <% }%>
 

@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class ConnectionDB {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/terminalTransporteDB?useSSL=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://localhost:3306/terminalTransporteDB?allowPublicKeyRetrieval=true&useSSL=false";
     private static final String USER = "root"; 
     private static final String PASSWORD = "1234";
 
