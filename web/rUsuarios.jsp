@@ -17,8 +17,8 @@
     <head>
         <title>Usuarios</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="resources/css/bootstrap.css"/>
-        <link rel="stylesheet" href="resources/css/styles.css"/>
+        <link rel="stylesheet" href="resources/css/bootstrap.css?v=1.0"/>
+        <link rel="stylesheet" href="resources/css/styles.css?v=1.0"/>
     </head>
     <body>
         
@@ -27,15 +27,16 @@
             rd.include(request, response);
         %>
         
-        <div class="registroEmpresas">
+        <div class="registroEmpresas table-container">
             <h1>Lista de usuarios</h1>
-            <button onclick="window.location.href = 'CrearUsuario';" type="submit" id="viewUsersBtn" class="btn btn-primary">Crear usuario</button>
+            <button onclick="window.location.href = 'CrearUsuario'" type="submit" id="viewUsersBtn" class="btn btn-primary">Crear usuario</button>
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Usuario</th>
                         <th scope="col">Rol</th>
+                        <th scope="col">Accion</th>
                     </tr>
                 </thead>
 
@@ -55,7 +56,7 @@
                                 <input type="hidden" name="usuarioId" value="<%=e.getId()%>">
                                 <button type="submit" class="btn btn-primary">Eliminar</button>
                             </td>
-                        </form>>
+                        </form>
                     </tr>
                     <% }%>
 

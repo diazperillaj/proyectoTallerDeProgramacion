@@ -18,21 +18,22 @@
     <head>
         <title>Empresas</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="resources/css/bootstrap.css"/>
-        <link rel="stylesheet" href="resources/css/styles.css"/>
+        <link rel="stylesheet" href="resources/css/bootstrap.css?v=1.0"/>
+        <link rel="stylesheet" href="resources/css/styles.css?v=1.0"/>
+
     </head>
     <body>
-        
-        <% 
+
+        <%
             RequestDispatcher rd = request.getRequestDispatcher("header.jsp");
             rd.include(request, response);
         %>
 
-        
-        <div class="registroEmpresas">
+
+        <div class="registroEmpresas table-container">
             <h1>Lista de empresas</h1>
-            <button onclick="window.location.href = 'CrearEmpresa';" type="submit" id="viewUsersBtn" class="btn btn-primary">Crear empresa</button>
-            <table class="table table-striped">
+            <button onclick="window.location.href = 'CrearEmpresa'" type="submit" id="viewUsersBtn" class="btn btn-primary">Crear empresa</button>
+            <table class="table table-striped" style="overflow-x: auto;">
                 <thead>
                     <tr>
                         <th scope="col">NIT</th>
@@ -57,14 +58,14 @@
                         <td><%= e.getWebSite()%></td>
                         <td><%= e.getDireccion()%></td>
                         <td><%= e.getPostal()%></td>
-                        <form action="EliminarEmpresa" method="POST">
-                            <td>
-                                <input type="hidden" name="empresaId" value="<%=e.getId()%>">
-                                <button type="submit" class="btn btn-primary">Eliminar</button>
-                            </td>
-                        </form>>
-                    </tr>
-                    <% }%>
+                <form action="EliminarEmpresa" method="POST">
+                    <td>
+                        <input type="hidden" name="empresaId" value="<%=e.getId()%>">
+                        <button type="submit" class="btn btn-primary">Eliminar</button> 
+                    </td>
+                </form>
+                </tr>
+                <% }%>
 
                 </tbody>
 
