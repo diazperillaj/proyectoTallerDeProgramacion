@@ -74,7 +74,7 @@ public class CrearUsuario extends HttpServlet {
         if (usDAO.cUsuario(us)) {
             response.sendRedirect(request.getContextPath() + "/Usuarios");
         } else {
-            System.out.println("Error SOURCE PACKAGES / VIEW / CREARUSUARIO.JSP 78");
+            response.sendRedirect(request.getContextPath() + "/CrearUsuario");
         }
     }
 

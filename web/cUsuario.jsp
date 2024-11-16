@@ -50,7 +50,7 @@
                         <label class="input-group-text" for="inputGroupSelect01">Rol</label>
                         <select name="rol" class="form-select" id="inputGroupSelect01">
                             <option value="Usuario" selected>Usuario</option>
-                            <option value="Administador">Administrador</option>
+                            <option value="Administrador">Administrador</option>
                             <option value="Pendiente">Pendiente</option>
                         </select>
                     </div>

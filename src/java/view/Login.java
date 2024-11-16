@@ -72,9 +72,9 @@ public class Login extends HttpServlet {
         us = usDAO.validateUsuario(us);
         
         if (us != null) {
-            request.getRequestDispatcher("/cEmpresa.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/Empresas");
         } else {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/Ingresar");
         }
         
         
