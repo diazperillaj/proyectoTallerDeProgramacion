@@ -1,3 +1,10 @@
+<%-- 
+    Document   : cEmpresa
+    Created on : Nov 15, 2024, 11:33:13 PM
+    Author     : Juan
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
         <title>Ingresar Empresa</title>
@@ -20,16 +27,22 @@
                     alert("Por favor, complete todos los campos.");
                     return false;
                 }
-                
+
                 return true;
             }
         </script>
 
     </head>
     <body>
+
+        <% 
+            RequestDispatcher rd = request.getRequestDispatcher("header.jsp");
+            rd.include(request, response);
+        %>
+        
         <div class="registroEmpresas">
             <h1 class="registroEmpresasTitulo">Registro de empresas</h1>
-            <form name="registroEmpresa" action="Prueba" method="POST" onsubmit="return validarFormulario()">
+            <form name="registroEmpresa" action="CrearEmpresa" method="POST" onsubmit="return validarFormulario()">
 
                 <div class="input-group mb-3">
                     <span class="input-group-text">Nombre</span>
@@ -61,7 +74,8 @@
                 </div>
                 <button type="submit" class="btn btn-primary ingresar-btn">Ingresar</button>
             </form>
-            <button onclick="window.location.href='empresas.jsp';" type="submit" id="viewUsersBtn" class="btn btn-primary">Ver Empresas</button>
+            <button onclick="window.location.href = 'Empresas';" type="submit" id="viewUsersBtn" class="btn btn-primary">Ver Empresas</button>
         </div>
     </body>
 </html>
+

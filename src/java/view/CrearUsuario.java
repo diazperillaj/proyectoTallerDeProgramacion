@@ -4,6 +4,7 @@
 package view;
 
 import controller.UsuarioDAO;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -47,6 +48,7 @@ public class CrearUsuario extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        request.getRequestDispatcher("/cUsuario.jsp").forward(request, response);
     }
 
     /**
@@ -70,11 +72,9 @@ public class CrearUsuario extends HttpServlet {
         UsuarioDAO usDAO = new UsuarioDAO();
 
         if (usDAO.cUsuario(us)) {
-            String mensajeAlerta = "Registrado en base de datos";
-            request.setAttribute("mensaje", mensajeAlerta);
-            request.getRequestDispatcher("/registroUsuario.html").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/Usuarios");
         } else {
-            System.out.println("error");
+            System.out.println("Error SOURCE PACKAGES / VIEW / CREARUSUARIO.JSP 78");
         }
     }
 

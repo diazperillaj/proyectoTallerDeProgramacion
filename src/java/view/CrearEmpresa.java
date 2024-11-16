@@ -3,8 +3,8 @@
  */
 package view;
 
-import controller.UsuarioDAO;
-import model.Usuario;
+import controller.EmpresaDAO;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,13 +12,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Empresa;
 
 /**
  *
  * @author Juan
  */
-@WebServlet(name = "Login", urlPatterns = {"/Ingresar"})
-public class Login extends HttpServlet {
+@WebServlet(name = "CrearEmpresa", urlPatterns = {"/CrearEmpresa"})
+public class CrearEmpresa extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -47,7 +48,7 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/cEmpresa.jsp").forward(request, response);
     }
 
     /**
@@ -62,23 +63,25 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        Usuario us = new Usuario(
-                request.getParameter("usuario"),
-                request.getParameter("contra")
+        Empresa em = new Empresa(
+                request.getParameter("nombre"),
+                Integer.parseInt(request.getParameter("nit")),
+                Integer.parseInt(request.getParameter("telefono")),
+                request.getParameter("correo"),
+                request.getParameter("webSite"),
+                request.getParameter("direccion"),
+                Integer.parseInt(request.getParameter("postal"))
         );
         
-        UsuarioDAO usDAO = new UsuarioDAO();
+        EmpresaDAO emDAO = new EmpresaDAO();
         
-        us = usDAO.validateUsuario(us);
-        
-        if (us != null) {
-            request.getRequestDispatcher("/cEmpresa.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-        }
-        
-        
+        try {
+            emDAO.cEmpresa(em);
+            response.sendRedirect(request.getContextPath() + "/Empresas");
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

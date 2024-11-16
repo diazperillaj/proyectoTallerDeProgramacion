@@ -10,8 +10,7 @@
 <%@page import="controller.EmpresaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    EmpresaDAO usDAO = new EmpresaDAO();
-    List<Empresa> empresas = usDAO.rEmpresa();
+    List<Empresa> empresas = (List<Empresa>) request.getAttribute("empresas");
 %>
 
 <!DOCTYPE html>
@@ -23,8 +22,16 @@
         <link rel="stylesheet" href="resources/css/styles.css"/>
     </head>
     <body>
+        
+        <% 
+            RequestDispatcher rd = request.getRequestDispatcher("header.jsp");
+            rd.include(request, response);
+        %>
+
+        
         <div class="registroEmpresas">
             <h1>Lista de empresas</h1>
+            <button onclick="window.location.href = 'CrearEmpresa';" type="submit" id="viewUsersBtn" class="btn btn-primary">Crear empresa</button>
             <table class="table table-striped">
                 <thead>
                     <tr>

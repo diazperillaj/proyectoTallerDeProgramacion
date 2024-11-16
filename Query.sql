@@ -15,6 +15,8 @@ CREATE TABLE terminalTransporteDB.Empresas (
 
 SELECT * FROM terminalTransporteDB.Empresas;
 
+DELETE FROM terminaltransportedb.Empresas WHERE nombre = "1";
+
 CREATE TABLE terminalTransporteDB.Usuarios (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     usuario VARCHAR(100) NOT NULL UNIQUE,
@@ -25,7 +27,7 @@ CREATE TABLE terminalTransporteDB.Usuarios (
 
 DROP TABLE terminaltransportedb.usuarios;
 
-SELECT * FROM terminaltransportedb.usuarios WHERE usuario = "jdiazp" and contra = "1234";
+SELECT * FROM terminaltransportedb.usuarios WHERE usuario = 1;
 
 SELECT * FROM terminaltransportedb.usuarios;
 

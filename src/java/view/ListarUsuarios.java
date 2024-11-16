@@ -4,7 +4,7 @@
 package view;
 
 import controller.UsuarioDAO;
-import model.Usuario;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,13 +12,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Usuario;
 
 /**
  *
  * @author Juan
  */
-@WebServlet(name = "Login", urlPatterns = {"/Ingresar"})
-public class Login extends HttpServlet {
+@WebServlet(name = "ListarUsuarios", urlPatterns = {"/Usuarios"})
+public class ListarUsuarios extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,6 +34,7 @@ public class Login extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -47,7 +50,14 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        
+        UsuarioDAO usDAO = new UsuarioDAO();
+        List<Usuario> usuarios = usDAO.rUsuario();
+        
+        request.setAttribute("usuarios", usuarios);
+
+        request.getRequestDispatcher("/rUsuarios.jsp").forward(request, response);
+        
     }
 
     /**
@@ -62,23 +72,6 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        Usuario us = new Usuario(
-                request.getParameter("usuario"),
-                request.getParameter("contra")
-        );
-        
-        UsuarioDAO usDAO = new UsuarioDAO();
-        
-        us = usDAO.validateUsuario(us);
-        
-        if (us != null) {
-            request.getRequestDispatcher("/cEmpresa.jsp").forward(request, response);
-        } else {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-        }
-        
-        
-
     }
 
     /**

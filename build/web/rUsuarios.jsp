@@ -9,8 +9,7 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Usuario"%>
 <%
-    UsuarioDAO usDAO = new UsuarioDAO();
-    List<Usuario> us = usDAO.rUsuario();
+    List<Usuario> us = (List<Usuario>) request.getAttribute("usuarios");
 %>
 
 <!DOCTYPE html>
@@ -22,8 +21,15 @@
         <link rel="stylesheet" href="resources/css/styles.css"/>
     </head>
     <body>
+        
+        <% 
+            RequestDispatcher rd = request.getRequestDispatcher("header.jsp");
+            rd.include(request, response);
+        %>
+        
         <div class="registroEmpresas">
             <h1>Lista de usuarios</h1>
+            <button onclick="window.location.href = 'CrearUsuario';" type="submit" id="viewUsersBtn" class="btn btn-primary">Crear usuario</button>
             <table class="table table-striped">
                 <thead>
                     <tr>

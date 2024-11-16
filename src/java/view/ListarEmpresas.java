@@ -4,6 +4,7 @@
 package view;
 
 import controller.EmpresaDAO;
+import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,14 +12,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 import model.Empresa;
 
 /**
  *
  * @author Juan
  */
-@WebServlet(name = "Prueba", urlPatterns = {"/Prueba"})
-public class Prueba extends HttpServlet {
+@WebServlet(name = "ListarEmpresas", urlPatterns = {"/Empresas"})
+public class ListarEmpresas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,9 +34,6 @@ public class Prueba extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,6 +49,14 @@ public class Prueba extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        EmpresaDAO usDAO = new EmpresaDAO();
+        List<Empresa> empresas = usDAO.rEmpresa();
+        
+        request.setAttribute("empresas", empresas);
+
+        request.getRequestDispatcher("/rEmpresas.jsp").forward(request, response);
+        
     }
 
     /**
@@ -64,27 +71,6 @@ public class Prueba extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
-        Empresa em = new Empresa(
-                request.getParameter("nombre"),
-                Integer.parseInt(request.getParameter("nit")),
-                Integer.parseInt(request.getParameter("telefono")),
-                request.getParameter("correo"),
-                request.getParameter("webSite"),
-                request.getParameter("direccion"),
-                Integer.parseInt(request.getParameter("postal"))
-        );
-        
-        EmpresaDAO emDAO = new EmpresaDAO();
-        
-        try {
-            emDAO.cEmpresa(em);
-            response.sendRedirect("index.html");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
     }
 
     /**
