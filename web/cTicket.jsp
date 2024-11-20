@@ -4,9 +4,19 @@
     Author     : Juan
 --%>
 
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Destino"%>
+<%
+    List<Destino> destinos = (List<Destino>) request.getAttribute("destinos");
+%>
 <!DOCTYPE html>
 <html>
+
+
+
+
+
     <head>
         <title>Registrar Usuario</title>
         <meta charset="UTF-8">
@@ -34,39 +44,32 @@
 
     </head>
     <body>
-        
-        <% 
+
+        <%
             RequestDispatcher rd = request.getRequestDispatcher("header.jsp");
             rd.include(request, response);
         %>
-        
-        <div>
-            <div class="registroEmpresas" >
+        <div class="main">
+            <div class="principal_container">
 
-                <h1>Crear Usuario</h1>
-                <form name="createUser" action="CrearUsuario" method="POST" onsubmit="return validarFormulario()">
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupSelect01">Rol</label>
-                        <select name="rol" class="form-select" id="inputGroupSelect01">
-                            <option value="Usuario" selected>Usuario</option>
-                            <option value="Administrador">Administrador</option>
-                            <option value="Pendiente">Pendiente</option>
-                        </select>
+                <div class="card text-center mb-3" style="width: 18rem;">
+                    <%for (Destino d : destinos) {%>
+                    <div class="card-body">
+                        <h5 class="card-title"><b><%= d.getLugar()%></b></h5>
+                        <p class="card-text">
+                            <br>Fecha <br><strong><%= d.getFecha().toString()%></strong>
+                            <br>Precio <br><strong><%= d.getPrecio()%></strong>
+                        </p>
+                        <form action="Comprar" method="POST">
+                            <input type="hidden" name="destinoId" value="<%=d.getId()%>">
+                            <button type="submit" class="btn btn-primary">Comprar</button>
+                        </form>
                     </div>
-                    <div class="mb-3">
-                        <label class="form-label">Usuario</label>
-                        <input type="text" name="usuario" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                        <input type="password" name="contra" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Crear usuario</button>
-                </form>
-                <button onclick="window.location.href = 'Usuarios';" type="submit" id="viewUsersBtn" class="btn btn-primary">Ver Usuarios</button>
+                    <%}%>
+                </div>
 
             </div>
         </div>
     </body>
-</html>
 
+</html>

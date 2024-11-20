@@ -4,9 +4,24 @@
     Author     : Juan
 --%>
 
+
+<%@page import="java.util.List"%>
+<%@page import="model.Empresa"%>
+<%@page import="model.Usuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="model.Destino"%>
+<%
+    Destino destino = (Destino) request.getAttribute("destino");
+    List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
+    List<Empresa> empresas = (List<Empresa>) request.getAttribute("empresas");
+%>
 <!DOCTYPE html>
 <html>
+
+
+
+
+
     <head>
         <title>Registrar Usuario</title>
         <meta charset="UTF-8">
@@ -34,39 +49,40 @@
 
     </head>
     <body>
-        
-        <% 
+
+
+
+        <%
             RequestDispatcher rd = request.getRequestDispatcher("header.jsp");
             rd.include(request, response);
         %>
-        
-        <div>
-            <div class="registroEmpresas" >
 
-                <h1>Crear Usuario</h1>
-                <form name="createUser" action="CrearUsuario" method="POST" onsubmit="return validarFormulario()">
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupSelect01">Rol</label>
-                        <select name="rol" class="form-select" id="inputGroupSelect01">
-                            <option value="Usuario" selected>Usuario</option>
-                            <option value="Administrador">Administrador</option>
-                            <option value="Pendiente">Pendiente</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Usuario</label>
-                        <input type="text" name="usuario" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    </div>
-                    <div class="mb-3">
-                        <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                        <input type="password" name="contra" class="form-control" id="exampleInputPassword1">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Crear usuario</button>
-                </form>
-                <button onclick="window.location.href = 'Usuarios';" type="submit" id="viewUsersBtn" class="btn btn-primary">Ver Usuarios</button>
 
+        <div class="main_confirmar_compra">
+            <div class="confirmation-container">
+                <h1>Confirmación de Compra</h1>
+                <p><strong>Destino:</strong> <%=destino.getLugar()%></p>
+                <p><strong>Fecha:</strong> <%=destino.getFecha()%></p>
+                <p class="price"><strong>Precio:</strong> $<%=destino.getPrecio()%></p>
+
+                <label for="usuario">Seleccionar Usuario:</label>
+                <select id="usuario" name="usuario">
+                    <%for (Usuario u : usuarios) {%>
+                    <option value="<%=u.getId()%>"><%=u.getUsuario()%></option>
+                    <%}%>
+                </select>
+
+                <label for="empresa">Seleccionar Empresa:</label>
+                <select id="empresa" name="empresa">
+                    <%for (Empresa e : empresas) {%>
+                    <option value="<%=e.getId()%>"><%=e.getNombre()%></option>
+                    <%}%>
+                </select>
+
+                <button>Confirmar Compra</button>
             </div>
         </div>
-    </body>
-</html>
 
+    </body>
+
+</html>
