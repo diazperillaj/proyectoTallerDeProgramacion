@@ -51,9 +51,13 @@
         %>
         <div class="main">
             <div class="principal_container">
-
+                
+                <%if (destinos.isEmpty()) {%>
+                <h1>No existen destinos <a href="CrearDestino">Crear</a></h1>
+                <%}%>
+                <%for (Destino d : destinos) {%>
                 <div class="card text-center mb-3" style="width: 18rem;">
-                    <%for (Destino d : destinos) {%>
+
                     <div class="card-body">
                         <h5 class="card-title"><b><%= d.getLugar()%></b></h5>
                         <p class="card-text">
@@ -65,8 +69,8 @@
                             <button type="submit" class="btn btn-primary">Comprar</button>
                         </form>
                     </div>
-                    <%}%>
                 </div>
+                <%}%>
 
             </div>
         </div>

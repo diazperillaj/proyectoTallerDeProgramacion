@@ -37,6 +37,12 @@ public class Ticket {
         this.hora_salida = hora_salida;
     }
 
+    public Ticket(int id_empresa, int id_usuario, int id_destino) {
+        this.id_empresa = id_empresa;
+        this.id_usuario = id_usuario;
+        this.id_destino = id_destino;
+    } 
+    
     public Ticket() {
     }
 

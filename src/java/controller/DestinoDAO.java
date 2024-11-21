@@ -22,16 +22,19 @@ import model.Destino;
  */
 public class DestinoDAO {
 
-    public boolean c(Destino pl) {
+    public boolean cDestino(Destino pl) {
         String sql = "INSERT INTO destinos (destino, precio, fecha_salida) VALUES (?,?,?)";
 
         System.out.println("In controller.DestinoDAO cDestino");
 
         try (Connection conexion = ConnectionDB.getConnection(); PreparedStatement stmt = conexion.prepareStatement(sql)) {
 
+            java.sql.Timestamp fechaSql = new java.sql.Timestamp(pl.getFecha().getTime());
+            System.out.println(fechaSql);
+            
             stmt.setString(1, pl.getLugar());
             stmt.setDouble(2, pl.getPrecio());
-            stmt.setString(3, pl.getFecha().toString());
+            stmt.setTimestamp(3, fechaSql);
             stmt.executeUpdate();
 
             return true;
@@ -55,7 +58,6 @@ public class DestinoDAO {
                         rs.getInt("id"),
                         rs.getString("destino"),
                         rs.getDouble("precio"),
-                        fecha,
                         fecha
                 );
                 pl.add(destino);
@@ -84,7 +86,6 @@ public class DestinoDAO {
                         rs.getInt("id"),
                         rs.getString("destino"),
                         rs.getDouble("precio"),
-                        fecha,
                         fecha
                 );
                 return us;
@@ -104,9 +105,11 @@ public class DestinoDAO {
 
         try (Connection conexion = ConnectionDB.getConnection(); PreparedStatement stmt = conexion.prepareStatement(sql)) {
 
+            java.sql.Date fechaSql = new java.sql.Date(pl.getFecha().getTime());
+            
             stmt.setString(1, pl.getLugar());
             stmt.setDouble(2, pl.getPrecio());
-            stmt.setString(3, pl.getFecha().toString());
+            stmt.setDate(3, fechaSql);
             stmt.setInt(4, pl.getId());
             stmt.executeUpdate();
 

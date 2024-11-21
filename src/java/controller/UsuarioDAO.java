@@ -119,6 +119,8 @@ public class UsuarioDAO {
 
             stmt.setInt(1, id);
             stmt.executeUpdate();
+            
+            
 
             return true;
         } catch (SQLException e) {

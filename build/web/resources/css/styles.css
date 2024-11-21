@@ -124,7 +124,7 @@ table {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;  
+    margin: 0;
 }
 
 
@@ -155,7 +155,7 @@ table {
 }
 
 .confirmation-container h1 {
-    color: #272727;
+    color: rgb(110, 110, 110);
     margin-bottom: 20px;
 }
 
@@ -189,7 +189,7 @@ table {
 }
 
 .confirmation-container button {
-    background-color: #4caf50;
+    background-color: #1630a7;
     color: #fff;
     padding: 10px 20px;
     font-size: 16px;
@@ -201,11 +201,80 @@ table {
 }
 
 .confirmation-container button:hover {
-    background-color: #388e3c;
+    background-color: #0e2375;
 }
 
 .confirmation-container .price {
     font-weight: bold;
     font-size: 18px;
     color: #333;
+}
+
+
+
+
+.main_destinos_container {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f4f4f4;
+}
+
+.destinos_container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+    padding: 20px;
+    text-align: center;
+
+}
+
+.destinos_container h1 {
+    color: rgb(110, 110, 110);
+    margin-bottom: 20px;
+}
+
+.destinos_container label {
+    display: block;
+    margin: 10px 0 5px;
+    font-size: 14px;
+    color: #333;
+    text-align: left;
+}
+
+.destinos_container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #555;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.destinos_container input:focus {
+    border-color: #1630a7;
+}
+
+.destinos_container button {
+    background-color: #1630a7;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+}
+
+.destinos_container button:hover {
+    background-color: #0e2375;
 }

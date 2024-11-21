@@ -4,7 +4,6 @@
 package view;
 
 import controller.DestinoDAO;
-import controller.TicketDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,14 +13,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Destino;
-import model.Ticket;
 
 /**
  *
  * @author Juan
  */
-@WebServlet(name = "ConfirmarTicket", urlPatterns = {"/ConfirmarTicket"})
-public class ConfirmarTicket extends HttpServlet {
+@WebServlet(name = "ListarDestinos", urlPatterns = {"/Destinos"})
+public class ListarDestinos extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -50,7 +48,12 @@ public class ConfirmarTicket extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        request.getRequestDispatcher("/confirmTicket.jsp").forward(request, response);
+        
+        DestinoDAO usDAO = new DestinoDAO();
+        List<Destino> destinos = usDAO.rDestino();
+        request.setAttribute("destinos", destinos);
+        request.getRequestDispatcher("/rDestinos.jsp").forward(request, response);
+        
     }
 
     /**
@@ -65,23 +68,6 @@ public class ConfirmarTicket extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
-        TicketDAO tkDAO = new TicketDAO();
-        Ticket tk = new Ticket(Integer.parseInt(request.getParameter("empresa")),
-                Integer.parseInt(request.getParameter("usuario")),
-                Integer.parseInt(request.getParameter("destino"))
-        );
-        
-        tkDAO.cTicket(tk);
-        
-        DestinoDAO usDAO = new DestinoDAO();
-        List<Destino> destinos = usDAO.rDestino();
-        
-        request.setAttribute("destinos", destinos);
-
-        request.getRequestDispatcher("/cTicket.jsp").forward(request, response);
-        
     }
 
     /**

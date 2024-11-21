@@ -60,26 +60,29 @@
 
         <div class="main_confirmar_compra">
             <div class="confirmation-container">
-                <h1>Confirmación de Compra</h1>
-                <p><strong>Destino:</strong> <%=destino.getLugar()%></p>
-                <p><strong>Fecha:</strong> <%=destino.getFecha()%></p>
-                <p class="price"><strong>Precio:</strong> $<%=destino.getPrecio()%></p>
+                <form action="ConfirmarTicket" method="POST">
+                    <h1>Confirmación de Compra</h1>
+                    <p><strong>Destino:</strong> <%=destino.getLugar()%></p>
+                    <p><strong>Fecha:</strong> <%=destino.getFecha()%></p>
+                    <p class="price"><strong>Precio:</strong> $<%=destino.getPrecio()%></p>
 
-                <label for="usuario">Seleccionar Usuario:</label>
-                <select id="usuario" name="usuario">
-                    <%for (Usuario u : usuarios) {%>
-                    <option value="<%=u.getId()%>"><%=u.getUsuario()%></option>
-                    <%}%>
-                </select>
+                    <label for="usuario">Seleccionar Usuario:</label>
+                    <select id="usuario" name="usuario">
+                        <%for (Usuario u : usuarios) {%>
+                        <option value="<%=u.getId()%>"><%=u.getUsuario()%></option>
+                        <%}%>
+                    </select>
 
-                <label for="empresa">Seleccionar Empresa:</label>
-                <select id="empresa" name="empresa">
-                    <%for (Empresa e : empresas) {%>
-                    <option value="<%=e.getId()%>"><%=e.getNombre()%></option>
-                    <%}%>
-                </select>
+                    <label for="empresa">Seleccionar Empresa:</label>
+                    <select id="empresa" name="empresa">
+                        <%for (Empresa e : empresas) {%>
+                        <option value="<%=e.getId()%>"><%=e.getNombre()%></option>
+                        <%}%>
+                    </select>
+                    <input type="hidden" name="destino" value="<%=destino.getId()%>">
 
-                <button>Confirmar Compra</button>
+                    <button>Confirmar Compra</button>
+                </form>
             </div>
         </div>
 

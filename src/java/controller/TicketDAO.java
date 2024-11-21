@@ -17,7 +17,7 @@ import model.Ticket;
  */
 public class TicketDAO {
     
-    public boolean c(Ticket pl) {
+    public boolean cTicket(Ticket pl) {
         String sql = "INSERT INTO tickets (id_empresas, id_usuarios, id_destino) VALUES (?,?,?)";
 
         System.out.println("In controller.TicketDAO cTicket");

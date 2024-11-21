@@ -17,14 +17,21 @@ public class Destino {
     private Date fecha;
     private Long hora;
 
-    public Destino(int id, String lugar, double precio, Date fecha, Date hora) {
+    public Destino(int id, String lugar, double precio, Date fecha) {
         this.id = id;
         this.lugar = lugar;
         this.precio = precio;
         this.fecha = fecha;
-        this.hora = hora.getTime();
+        this.hora = fecha.getTime();
     }
 
+    public Destino(String lugar, double precio, Date fecha) {
+        this.lugar = lugar;
+        this.precio = precio;
+        this.fecha = fecha;
+        this.hora = fecha.getTime();
+    }
+    
     public Destino() {
     }
 
